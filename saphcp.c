@@ -3,6 +3,7 @@
 #include "espconn.h"
 #include "mem.h"
 #include "saphcp.h"
+#include "json/json.h"
 
 // Debug output.
 #if 0
@@ -26,9 +27,9 @@ void ICACHE_FLASH_ATTR hcp_send(
 			landscapehost,
 			deviceid);
 	os_sprintf(headers,
-			"Content-Type: application/json\r\n"
+			"Content-Type: %s\r\n"
 			"Authorization: Bearer %s\r\n",
-			token);
+			JSON_CONTENT_TYPE, token);
 
 	PRINTF("Request url: %s\r\n", url);
 	PRINTF("Request data: %s\r\n", data);
